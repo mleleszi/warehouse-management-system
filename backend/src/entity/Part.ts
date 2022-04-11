@@ -3,7 +3,9 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   CreateDateColumn,
+  OneToMany,
 } from "typeorm";
+import { Blueprint } from "./Blueprint";
 
 @Entity()
 export class Part {
@@ -18,4 +20,7 @@ export class Part {
 
   @CreateDateColumn({ name: "created_at" })
   createAt: Date;
+
+  @OneToMany(() => Blueprint, (blueprint) => blueprint.part)
+  blueprints: Blueprint[];
 }
