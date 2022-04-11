@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { createConnection } from "typeorm";
-import express from "express";
+import * as express from "express";
 import { getRouter } from "./routes";
 
 createConnection()

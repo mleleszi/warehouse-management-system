@@ -2,9 +2,9 @@
   "type": "postgres",
   "host": "localhost",
   "port": 5432,
-  "username": "leleszi",
+  "username": "postgres",
   "password": "admin",
-  "database": "leleszi",
+  "database": "info_rendszerek_beadando",
   "synchronize": true,
   "logging": false,
   "entities": [
