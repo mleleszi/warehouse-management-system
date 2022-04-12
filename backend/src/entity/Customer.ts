@@ -1,24 +1,30 @@
 import {
   Column,
   Entity,
-  ManyToMany,
-  OneToMany,
   PrimaryGeneratedColumn,
+  CreateDateColumn,
+  OneToMany,
 } from "typeorm";
 import { Blueprint } from "./Blueprint";
 import { Order } from "./Order";
 
 @Entity()
-export class Product {
+export class Customer {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
   name: string;
 
-  @OneToMany(() => Blueprint, (blueprint) => blueprint.part)
-  blueprints: Blueprint[];
+  @Column()
+  email: number;
 
-  @ManyToMany(() => Order)
+  @Column({ name: "phone_num" })
+  phoneNum: number;
+
+  @Column()
+  address: string;
+
+  @OneToMany(() => Order, (order) => order.customer)
   orders: Order[];
 }
