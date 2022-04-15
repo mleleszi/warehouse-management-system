@@ -1,0 +1,30 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading"> </mat-spinner>
+  <form (submit)="onSavePart(partForm)" #partForm="ngForm" *ngIf="!isLoading">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        name="name"
+        [ngModel]="part?.name"
+        required
+        placeholder="Part Name"
+        #title="ngModel"
+      />
+      <mat-error *ngIf="title.invalid">Please enter a name</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="number"
+        name="quantity"
+        [ngModel]="part?.quantity"
+        required
+        placeholder="Quantity"
+        #title="ngModel"
+      />
+      <mat-error *ngIf="title.invalid">Please enter a number</mat-error>
+     </mat-form-field>
+    <button mat-raised-button color="accent" type="submit" [disabled]="partForm.form.invalid">Save Part</button>
+  </form>
+</mat-card>

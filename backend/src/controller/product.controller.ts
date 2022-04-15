@@ -19,7 +19,7 @@ export class ProductController extends Controller {
         .select("blueprint")
         .from(Blueprint, "blueprint")
         .innerJoinAndSelect("blueprint.part", "part")
-        .where("blueprint.product = :product", { product: entityId })
+        .where("blueprint.part = :part", { product: entityId })
         .getMany();
 
       console.log(blueprints);

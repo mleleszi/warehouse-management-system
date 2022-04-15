@@ -12,14 +12,14 @@ export class Part {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ unique: true })
   name: string;
 
   @Column()
   quantity: number;
 
   @CreateDateColumn({ name: "created_at" })
-  createAt: Date;
+  createdAt: Date;
 
   @OneToMany(() => Blueprint, (blueprint) => blueprint.part)
   blueprints: Blueprint[];

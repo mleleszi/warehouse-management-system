@@ -5,12 +5,12 @@ import { Part } from "./Part";
 @Entity()
 export class Blueprint {
   @PrimaryColumn({ type: "int", name: "part_id" })
-  @ManyToOne(() => Part, (part) => part.id)
+  @ManyToOne(() => Part, (part) => part.id, { onDelete: "CASCADE" })
   @JoinColumn({ name: "part_id" })
   part: Part;
 
   @PrimaryColumn({ type: "int", name: "product_id" })
-  @ManyToOne(() => Product, (product) => product.id)
+  @ManyToOne(() => Product, (product) => product.id, { onDelete: "CASCADE" })
   @JoinColumn({ name: "product_id" })
   product: Product;
 
