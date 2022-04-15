@@ -17,6 +17,7 @@ import { ErrorInterceptor } from './error.interceptor';
 import { PartCreateComponent } from './part/part-create/part-create.component';
 import { CustomerCreateComponent } from './customer/customer-create/customer-create.component';
 import { CustomerListComponent } from './customer/customer-list/customer-list.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CustomerListComponent } from './customer/customer-list/customer-list.co
     PartCreateComponent,
     CustomerCreateComponent,
     CustomerListComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
