@@ -4,16 +4,8 @@
   </span>
   <span class="spacer"></span>
   <ul>
-    <!--
-    <li *ngIf="userIsAuthenticated">
-      <a mat-button routerLink="/create" routerLinkActive="mat-accent"
-        >New Product</a
-      >
-    </li>
-    -->
-
-    <button *ngIf="userIsAuthenticated" mat-button [matMenuTriggerFor]="menu" >Parts</button>
-    <mat-menu #menu="matMenu">
+    <button *ngIf="userIsAuthenticated" mat-button [matMenuTriggerFor]="parts" >Parts</button>
+    <mat-menu #parts="matMenu">
       <button mat-menu-item>
         <a mat-button class="submenu" routerLink="/parts">
           List
@@ -26,8 +18,8 @@
       </button>
     </mat-menu>
 
-    <button *ngIf="userIsAuthenticated" mat-button [matMenuTriggerFor]="menu">Products</button>
-    <mat-menu #menu="matMenu">
+    <button *ngIf="userIsAuthenticated" mat-button [matMenuTriggerFor]="products">Products</button>
+    <mat-menu #products="matMenu">
       <button mat-menu-item>
         <a mat-button class="submenu" routerLink="/parts">
           List
@@ -40,8 +32,8 @@
       </button>
     </mat-menu>
 
-    <button *ngIf="userIsAuthenticated" mat-button [matMenuTriggerFor]="menu">Orders</button>
-    <mat-menu #menu="matMenu">
+    <button *ngIf="userIsAuthenticated" mat-button [matMenuTriggerFor]="orders">Orders</button>
+    <mat-menu #orders="matMenu">
       <button mat-menu-item>
         <a mat-button class="submenu" routerLink="/parts">
           List
@@ -54,15 +46,15 @@
       </button>
     </mat-menu>
 
-    <button *ngIf="userIsAuthenticated" mat-button [matMenuTriggerFor]="menu">Customers</button>
-    <mat-menu #menu="matMenu">
+    <button *ngIf="userIsAuthenticated" mat-button [matMenuTriggerFor]="customers">Customers</button>
+    <mat-menu #customers="matMenu">
       <button mat-menu-item>
-        <a mat-button class="submenu" routerLink="/parts">
+        <a mat-button class="submenu" routerLink="/customers">
           List
         </a>
       </button>
       <button mat-menu-item>
-        <a mat-button class="submenu" routerLink="/parts/create" routerLinkActive="mat-accent">
+        <a mat-button class="submenu" routerLink="/customers/create" routerLinkActive="mat-accent">
           Add
         </a>
       </button>

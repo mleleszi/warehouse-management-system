@@ -5,6 +5,8 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AuthGuard } from './auth/auth.guard';
 import { PartListComponent } from './part/part-list/part-list.component';
 import { PartCreateComponent } from './part/part-create/part-create.component';
+import { CustomerListComponent } from './customer/customer-list/customer-list.component';
+import { CustomerCreateComponent } from './customer/customer-create/customer-create.component';
 
 const routes: Routes = [
   { path: 'parts', component: PartListComponent, canActivate: [AuthGuard] },
@@ -16,6 +18,21 @@ const routes: Routes = [
   {
     path: 'parts/edit/:partId',
     component: PartCreateComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'customers',
+    component: CustomerListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'customers/create',
+    component: CustomerCreateComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'customers/edit/:partId',
+    component: CustomerCreateComponent,
     canActivate: [AuthGuard],
   },
   { path: 'login', component: LoginComponent },

@@ -1,0 +1,44 @@
+<mat-spinner *ngIf="isLoading && userIsAuthenticated"></mat-spinner>
+<mat-card *ngIf="!userIsAuthenticated">
+  <h1 class="center">Please log in!</h1>
+</mat-card>
+<table mat-table [dataSource]="customers" class="mat-elevation-z8" *ngIf="!isLoading && userIsAuthenticated">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let customer"> {{customer.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let customer"> {{customer.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef> Email </th>
+    <td mat-cell *matCellDef="let customer"> {{customer.email}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="phoneNum">
+    <th mat-header-cell *matHeaderCellDef> Phone Number </th>
+    <td mat-cell *matCellDef="let customer"> {{customer.phoneNum}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="address">
+    <th mat-header-cell *matHeaderCellDef> Address </th>
+    <td mat-cell *matCellDef="let customer"> {{customer.address}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="operations">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td align="right" mat-cell *matCellDef="let customer">
+      <mat-icon aria-hidden="false"  color="primary" [routerLink]="['/customers/edit', customer.id]">edit</mat-icon>
+      <span class="spacer"></span>
+      <mat-icon aria-hidden="false"  color="accent" (click)="onDelete(customer.id)">delete</mat-icon>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+

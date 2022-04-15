@@ -1,0 +1,55 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading"> </mat-spinner>
+  <form (submit)="onSaveCustomer(customerForm)" #customerForm="ngForm" *ngIf="!isLoading">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        name="name"
+        [ngModel]="customer?.name"
+        required
+        placeholder="Name"
+        #title="ngModel"
+      />
+      <mat-error *ngIf="title.invalid">Please enter a name</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="email"
+        name="email"
+        [ngModel]="customer?.email"
+        required
+        placeholder="Email"
+        #title="ngModel"
+      />
+      <mat-error *ngIf="title.invalid">Please enter a valid email</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        name="phoneNum"
+        [ngModel]="customer?.phoneNum"
+        required
+        placeholder="Phone Number"
+        #title="ngModel"
+      />
+      <mat-error *ngIf="title.invalid">Please enter a valid phone number</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        name="address"
+        [ngModel]="customer?.address"
+        required
+        placeholder="Address"
+        #title="ngModel"
+      />
+      <mat-error *ngIf="title.invalid">Please enter an address</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" type="submit" [disabled]="customerForm.form.invalid">Save Customer</button>
+  </form>
+</mat-card>

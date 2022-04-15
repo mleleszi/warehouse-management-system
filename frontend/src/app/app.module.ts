@@ -15,6 +15,8 @@ import { PartListComponent } from './part/part-list/part-list.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { ErrorInterceptor } from './error.interceptor';
 import { PartCreateComponent } from './part/part-create/part-create.component';
+import { CustomerCreateComponent } from './customer/customer-create/customer-create.component';
+import { CustomerListComponent } from './customer/customer-list/customer-list.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { PartCreateComponent } from './part/part-create/part-create.component';
     HeaderComponent,
     PartListComponent,
     PartCreateComponent,
+    CustomerCreateComponent,
+    CustomerListComponent,
   ],
   imports: [
     BrowserModule,

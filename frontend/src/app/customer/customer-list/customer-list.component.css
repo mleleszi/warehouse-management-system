@@ -1,0 +1,22 @@
+table {
+  width: 100%;
+}
+
+mat-spinner {
+  margin: auto;
+}
+
+.spacer {
+  display: inline-block;
+  width: 10px;
+}
+
+mat-icon:hover{
+  cursor: pointer;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

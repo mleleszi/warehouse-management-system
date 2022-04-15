@@ -17,10 +17,10 @@ export class Customer {
   name: string;
 
   @Column()
-  email: number;
+  email: string;
 
   @Column({ name: "phone_num" })
-  phoneNum: number;
+  phoneNum: string;
 
   @Column()
   address: string;
