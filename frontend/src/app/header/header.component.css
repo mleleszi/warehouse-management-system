@@ -10,6 +10,11 @@ a {
   color: white;
 }
 
+.submenu {
+  color: red;
+  font-weight: bold;
+}
+
 .spacer {
   flex: 1 1 auto;
 }
