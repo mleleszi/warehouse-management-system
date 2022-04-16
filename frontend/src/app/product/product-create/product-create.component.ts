@@ -50,28 +50,29 @@ export class ProductCreateComponent implements OnInit {
   }
 
   onSaveProduct(form: NgForm) {
-    this.productService.createPart();
-    /*
     if (form.invalid) return;
-
     this.isLoading = true;
-    if (this.mode === 'create') {
-      this.partService.createPart({
-        id: null,
-        name: form.value.name,
-        quantity: Math.floor(form.value.quantity),
-      });
-    } else {
-      this.partService.updatePart({
-        id: this.part.id,
-        name: form.value.name,
-        quantity: Math.floor(form.value.quantity),
-      });
-    }
 
+    const blueprints: { partId: number; quantity: number }[] = this.parts
+      .filter((part) => part.added !== 0)
+      .map((part) => {
+        return {
+          partId: part.id,
+          quantity: part.added,
+        };
+      });
+    const productCreateDto: ProductCreateDto = {
+      name: form.value.name,
+      blueprints,
+    };
+
+    this.productService.createPart(productCreateDto).subscribe(() => {
+      this.isLoading = false;
+    });
     form.resetForm();
-
-     */
+    this.parts.forEach((part) => {
+      part.added = 0;
+    });
   }
   ngOnDestroy(): void {
     this.authStatusSub.unsubscribe();

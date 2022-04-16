@@ -19,11 +19,10 @@ export class ProductService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  createPart() {
-    this.http
-      .post('http://localhost:8080/api/product/', this.productCreateDto)
-      .subscribe((res) => {
-        this.router.navigate(['/']);
-      });
+  createPart(productCreateDto: ProductCreateDto) {
+    return this.http.post(
+      'http://localhost:8080/api/product/',
+      productCreateDto
+    );
   }
 }

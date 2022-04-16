@@ -21,12 +21,7 @@
     <button *ngIf="userIsAuthenticated" mat-button [matMenuTriggerFor]="products">Products</button>
     <mat-menu #products="matMenu">
       <button mat-menu-item>
-        <a mat-button class="submenu" routerLink="/parts">
-          List
-        </a>
-      </button>
-      <button mat-menu-item>
-        <a mat-button class="submenu" routerLink="/parts/create" routerLinkActive="mat-accent">
+        <a mat-button class="submenu" routerLink="/products/create" routerLinkActive="mat-accent">
           Add
         </a>
       </button>

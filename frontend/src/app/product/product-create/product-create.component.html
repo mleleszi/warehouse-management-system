@@ -11,11 +11,11 @@
 
   <ng-container matColumnDef="operations">
     <th mat-header-cell *matHeaderCellDef>  </th>
-    <td class="operations" mat-cell *matCellDef="let part">
+    <td class="operations" mat-cell *matCellDef="let part" align="right">
       <button mat-mini-fab color="accent" (click)="decrement(part)">
        -
       </button>
-      <span>{{part.added}}</span>
+      <span class="added">{{part.added}}</span>
       <button mat-mini-fab color="accent" (click)="increment(part)">
         +
       </button>
