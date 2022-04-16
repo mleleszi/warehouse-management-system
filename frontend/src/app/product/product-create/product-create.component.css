@@ -1,5 +1,5 @@
 table {
-  width: 80%;
+  width: 60%;
   margin: auto;
   margin-bottom: 20px;
 }
@@ -12,6 +12,7 @@ mat-spinner {
   display: inline-block;
   width: 10px;
 }
+
 
 mat-icon:hover{
   cursor: pointer;

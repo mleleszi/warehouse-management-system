@@ -18,8 +18,8 @@ export class ProductCreateComponent implements OnInit {
   productDto: ProductCreateDto;
   private authStatusSub: Subscription;
   private partSubscription: Subscription;
-  parts: Part[];
-  displayedColumns: string[] = ['id', 'name'];
+  parts: { id: number; name: string; added: number }[];
+  displayedColumns: string[] = ['id', 'name', 'operations'];
 
   constructor(
     public productService: ProductService,
@@ -40,7 +40,11 @@ export class ProductCreateComponent implements OnInit {
       .getPartsUpdatedListener()
       .subscribe((data) => {
         this.isLoading = false;
-        this.parts = data.parts.sort((a, b) => a.id - b.id);
+        this.parts = [];
+        data.parts.forEach((part) => {
+          this.parts.push({ id: part.id, name: part.name, added: 0 });
+          console.log(part);
+        });
         console.log(this.parts);
       });
   }
@@ -71,5 +75,14 @@ export class ProductCreateComponent implements OnInit {
   }
   ngOnDestroy(): void {
     this.authStatusSub.unsubscribe();
+  }
+
+  increment(part: { id: number; name: string; added: number }) {
+    part.added++;
+  }
+
+  decrement(part: { id: number; name: string; added: number }) {
+    if (part.added <= 0) return;
+    part.added--;
   }
 }
