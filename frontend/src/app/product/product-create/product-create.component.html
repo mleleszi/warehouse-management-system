@@ -1,0 +1,33 @@
+<table mat-table [dataSource]="parts" class="mat-elevation-z8" *ngIf="!isLoading">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let part"> {{part.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let part"> {{part.name}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+<mat-card><mat-spinner *ngIf="isLoading"> </mat-spinner>
+  <form (submit)="onSaveProduct(productForm)" #productForm="ngForm" *ngIf="!isLoading">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        name="name"
+        [ngModel]="productDto?.name"
+        required
+        placeholder="Product Name"
+        #title="ngModel"
+      />
+      <mat-error *ngIf="title.invalid">Please enter a name</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="accent" type="submit" [disabled]="productForm.form.invalid">Save Part</button>
+  </form>
+</mat-card>

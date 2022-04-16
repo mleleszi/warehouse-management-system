@@ -1,0 +1,30 @@
+table {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+mat-spinner {
+  margin: auto;
+}
+
+.spacer {
+  display: inline-block;
+  width: 10px;
+}
+
+mat-icon:hover{
+  cursor: pointer;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+mat-form-field,
+text-area {
+  width: 100%;
+}
+
+

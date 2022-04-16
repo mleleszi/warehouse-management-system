@@ -5,6 +5,7 @@ import { Blueprint } from "../entity/Blueprint";
 
 export class ProductController extends Controller {
   repository = getRepository(Product);
+  blueprintRepository = getRepository(Blueprint);
 
   getBlueprintByProduct = async (req, res) => {
     const entityId = req.params.id;
@@ -27,6 +28,27 @@ export class ProductController extends Controller {
       res.json(blueprints);
     } catch (err) {
       console.log(err);
+      res.status(500).json({ message: err.message });
+    }
+  };
+
+  saveProductWithBlueprints = async (req, res) => {
+    const product = this.repository.create({ name: req.body.name });
+    let blueprints = req.body.blueprints;
+
+    try {
+      const productInserted = await this.repository.save(product);
+      blueprints.forEach(async (item) => {
+        const blueprint = this.blueprintRepository.create({
+          partId: item.partId,
+          productId: productInserted.id,
+          quantity: item.quantity,
+        });
+        await this.blueprintRepository.save(blueprint);
+      });
+
+      res.status(200).json();
+    } catch (err) {
       res.status(500).json({ message: err.message });
     }
   };

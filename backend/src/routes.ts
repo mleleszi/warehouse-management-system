@@ -24,12 +24,16 @@ export function getRouter() {
   router.put("/api/part", checkAuth, partController.update);
   router.delete("/api/part/:id", checkAuth, partController.delete);
 
-  // part routes
-  router.get("/api/part", checkAuth, productController.getAll);
-  router.get("/api/part/:id", checkAuth, productController.getOne);
-  router.post("/api/part", checkAuth, productController.create);
-  router.put("/api/part", checkAuth, productController.update);
-  router.delete("/api/part/:id", checkAuth, productController.delete);
+  // product routes
+  router.get("/api/product", checkAuth, productController.getAll);
+  router.get("/api/product/:id", checkAuth, productController.getOne);
+  router.post(
+    "/api/product",
+    checkAuth,
+    productController.saveProductWithBlueprints
+  );
+  router.put("/api/product", checkAuth, productController.update);
+  router.delete("/api/product/:id", checkAuth, productController.delete);
   router.get(
     "/api/part/:id/blueprint",
     checkAuth,

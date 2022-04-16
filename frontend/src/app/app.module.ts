@@ -18,6 +18,7 @@ import { PartCreateComponent } from './part/part-create/part-create.component';
 import { CustomerCreateComponent } from './customer/customer-create/customer-create.component';
 import { CustomerListComponent } from './customer/customer-list/customer-list.component';
 import { ErrorComponent } from './error/error.component';
+import { ProductCreateComponent } from './product/product-create/product-create.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ErrorComponent } from './error/error.component';
     CustomerCreateComponent,
     CustomerListComponent,
     ErrorComponent,
+    ProductCreateComponent,
   ],
   imports: [
     BrowserModule,
