@@ -9,6 +9,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   exports: [
@@ -22,6 +23,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatPaginatorModule,
     MatTableModule,
     MatMenuModule,
+    MatSelectModule,
   ],
 })
 export class AngularMaterialModule {}

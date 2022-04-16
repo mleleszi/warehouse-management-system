@@ -9,6 +9,7 @@ import { CustomerListComponent } from './customer/customer-list/customer-list.co
 import { CustomerCreateComponent } from './customer/customer-create/customer-create.component';
 import { ProductCreateComponent } from './product/product-create/product-create.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
+import { OrderCreateComponent } from './order/order-create/order-create.component';
 
 const routes: Routes = [
   { path: 'parts', component: PartListComponent, canActivate: [AuthGuard] },
@@ -45,6 +46,11 @@ const routes: Routes = [
   {
     path: 'products/create',
     component: ProductCreateComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'orders/create',
+    component: OrderCreateComponent,
     canActivate: [AuthGuard],
   },
   { path: 'login', component: LoginComponent },

@@ -76,6 +76,7 @@ export class ProductCreateComponent implements OnInit {
   }
   ngOnDestroy(): void {
     this.authStatusSub.unsubscribe();
+    this.partSubscription.unsubscribe();
   }
 
   increment(part: { id: number; name: string; added: number }) {

@@ -20,6 +20,7 @@ import { CustomerListComponent } from './customer/customer-list/customer-list.co
 import { ErrorComponent } from './error/error.component';
 import { ProductCreateComponent } from './product/product-create/product-create.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
+import { OrderCreateComponent } from './order/order-create/order-create.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ProductListComponent } from './product/product-list/product-list.compon
     ErrorComponent,
     ProductCreateComponent,
     ProductListComponent,
+    OrderCreateComponent,
   ],
   imports: [
     BrowserModule,
