@@ -8,6 +8,7 @@ import { PartCreateComponent } from './part/part-create/part-create.component';
 import { CustomerListComponent } from './customer/customer-list/customer-list.component';
 import { CustomerCreateComponent } from './customer/customer-create/customer-create.component';
 import { ProductCreateComponent } from './product/product-create/product-create.component';
+import { ProductListComponent } from './product/product-list/product-list.component';
 
 const routes: Routes = [
   { path: 'parts', component: PartListComponent, canActivate: [AuthGuard] },
@@ -34,6 +35,11 @@ const routes: Routes = [
   {
     path: 'customers/edit/:customerId',
     component: CustomerCreateComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'products',
+    component: ProductListComponent,
     canActivate: [AuthGuard],
   },
   {
