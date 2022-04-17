@@ -19,40 +19,63 @@ export class OrderController extends Controller {
     const order = this.orderRepository.create({ customerId });
 
     const stock = await this.partController.getStock();
-
-    products.forEach(async (product) => {
-      const blueprints = await this.bluePrintController.getBlueprintsByProduct(
-        product.id
-      );
-
-      blueprints.forEach(async (blueprint) => {
-        if (
-          stock.get(blueprint.partId) - product.quantity * blueprint.quantity <
-          0
-        ) {
-          return res.status(400).json({ message: "not enough parts in stock" });
-        } else {
-          console.log(stock.get(blueprint.partId));
-          await this.partController.setStock(
-            blueprint.partId,
-            stock.get(blueprint.partId) - product.quantity * blueprint.quantity
-          );
-        }
-      });
-    });
-
     try {
+      /*
+      await products.forEach(async (product) => {
+        const blueprints =
+          await this.bluePrintController.getBlueprintsByProduct(product.id);
+
+         blueprints.forEach(async (blueprint) => {
+          if (
+            stock.get(blueprint.partId) -
+              product.quantity * blueprint.quantity <
+            0
+          ) {
+            throw new Error("not enough parts in stock");
+          } else {
+            await this.partController.setStock(
+              blueprint.partId,
+              stock.get(blueprint.partId) -
+                product.quantity * blueprint.quantity
+            );
+          }
+        });
+      });
+
+  */
+      for (const product of products) {
+        const blueprints =
+          await this.bluePrintController.getBlueprintsByProduct(product.id);
+
+        for (const blueprint of blueprints) {
+          if (
+            stock.get(blueprint.partId) -
+              product.quantity * blueprint.quantity <
+            0
+          ) {
+            return res
+              .status(400)
+              .json({ message: "not enough parts in stock" });
+          } else {
+            await this.partController.setStock(
+              blueprint.partId,
+              stock.get(blueprint.partId) -
+                product.quantity * blueprint.quantity
+            );
+          }
+        }
+      }
+
       const orderInserted = await this.orderRepository.save(order);
 
-      products.forEach(async (product) => {
+      for (const product of products) {
         const orderedProduct = this.orderedProductsRepository.create({
           orderId: orderInserted.id,
           productId: product.id,
           quantity: product.quantity,
         });
-        console.log(orderedProduct);
         await this.orderedProductsRepository.save(orderedProduct);
-      });
+      }
 
       res.status(200).json({ message: "successful order" });
     } catch (err) {

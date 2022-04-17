@@ -38,14 +38,15 @@ export class ProductController extends Controller {
 
     try {
       const productInserted = await this.repository.save(product);
-      blueprints.forEach(async (item) => {
+
+      for (const item of blueprints) {
         const blueprint = this.blueprintRepository.create({
           partId: item.partId,
           productId: productInserted.id,
           quantity: item.quantity,
         });
         await this.blueprintRepository.save(blueprint);
-      });
+      }
 
       res.status(200).json();
     } catch (err) {
