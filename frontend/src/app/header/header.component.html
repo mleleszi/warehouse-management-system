@@ -4,8 +4,8 @@
   </span>
   <span class="spacer"></span>
   <ul>
-    <button *ngIf="userIsAuthenticated" mat-button [matMenuTriggerFor]="parts" >Parts</button>
-    <mat-menu #parts="matMenu">
+    <button [class.active]="router.isActive('/parts',false)" *ngIf="userIsAuthenticated" mat-button [matMenuTriggerFor]="parts" >Parts</button>
+    <mat-menu  #parts="matMenu">
       <button mat-menu-item>
         <a mat-button class="submenu" routerLink="/parts">
           List
@@ -18,7 +18,7 @@
       </button>
     </mat-menu>
 
-    <button *ngIf="userIsAuthenticated" mat-button [matMenuTriggerFor]="products">Products</button>
+    <button [class.active]="router.isActive('/products',false)" *ngIf="userIsAuthenticated" mat-button [matMenuTriggerFor]="products">Products</button>
     <mat-menu #products="matMenu">
       <button mat-menu-item>
         <a mat-button class="submenu" routerLink="/products">
@@ -32,7 +32,7 @@
       </button>
     </mat-menu>
 
-    <button *ngIf="userIsAuthenticated" mat-button [matMenuTriggerFor]="orders">Orders</button>
+    <button [class.active]="router.isActive('/orders',false)" *ngIf="userIsAuthenticated" mat-button [matMenuTriggerFor]="orders">Orders</button>
     <mat-menu #orders="matMenu">
       <button mat-menu-item>
         <a mat-button class="submenu" routerLink="/orders">
@@ -46,7 +46,7 @@
       </button>
     </mat-menu>
 
-    <button *ngIf="userIsAuthenticated" mat-button [matMenuTriggerFor]="customers">Customers</button>
+    <button [class.active]="router.isActive('/customers',false)" *ngIf="userIsAuthenticated" mat-button [matMenuTriggerFor]="customers">Customers</button>
     <mat-menu #customers="matMenu">
       <button mat-menu-item>
         <a mat-button class="submenu" routerLink="/customers">

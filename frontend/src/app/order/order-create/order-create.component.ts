@@ -92,7 +92,6 @@ export class OrderCreateComponent implements OnInit {
 
     form.resetForm();
     this.router.navigate(['']);
-    console.log(orderCreateDto);
   }
 
   increment(part: { id: number; name: string; added: number }) {
