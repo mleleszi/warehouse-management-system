@@ -7,6 +7,7 @@ import {
 } from "typeorm";
 import { Blueprint } from "./Blueprint";
 import { Order } from "./Order";
+import { OrderedProducts } from "./OrderedProducts";
 
 @Entity()
 export class Product {
@@ -16,9 +17,12 @@ export class Product {
   @Column()
   name: string;
 
-  @OneToMany(() => Blueprint, (blueprint) => blueprint.part)
+  @OneToMany(() => Blueprint, (blueprint) => blueprint.product)
   blueprints: Blueprint[];
 
-  @ManyToMany(() => Order)
-  orders: Order[];
+  @OneToMany(
+    () => OrderedProducts,
+    (orderedProducts) => orderedProducts.product
+  )
+  orderedProducts: OrderedProducts[];
 }

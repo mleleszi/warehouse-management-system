@@ -6,11 +6,9 @@ import {
   OneToMany,
   ManyToOne,
   JoinColumn,
-  ManyToMany,
-  JoinTable,
 } from "typeorm";
-import { Product } from "./Product";
 import { Customer } from "./Customer";
+import { OrderedProducts } from "./OrderedProducts";
 
 @Entity()
 export class Order {
@@ -24,17 +22,9 @@ export class Order {
   @JoinColumn({ name: "customer_id" })
   customer: Customer;
 
-  @ManyToMany(() => Product)
-  @JoinTable({
-    name: "ordered_products",
-    joinColumn: {
-      name: "order_id",
-      referencedColumnName: "id",
-    },
-    inverseJoinColumn: {
-      name: "product_id",
-      referencedColumnName: "id",
-    },
-  })
-  products: Product[];
+  @Column({ name: "customer_id" })
+  customerId: number;
+
+  @OneToMany(() => OrderedProducts, (orderedProducts) => orderedProducts.order)
+  orderedProducts: OrderedProducts[];
 }

@@ -1,7 +1,62 @@
-import { getRepository } from "typeorm";
+import { createQueryBuilder, getManager, getRepository } from "typeorm";
 import { Controller } from "./base.controller";
 import { Order } from "../entity/Order";
+import { Customer } from "../entity/Customer";
+import { Product } from "../entity/Product";
+import { OrderedProducts } from "../entity/OrderedProducts";
+import { PartController } from "./part.controller";
+import { BlueprintController } from "./blueprint.controller";
 
 export class OrderController extends Controller {
-  repository = getRepository(Order);
+  orderRepository = getRepository(Order);
+  orderedProductsRepository = getRepository(OrderedProducts);
+  partController = new PartController();
+  bluePrintController = new BlueprintController();
+
+  override create = async (req, res) => {
+    const customerId = req.body.customerId;
+    const products = req.body.products;
+    const order = this.orderRepository.create({ customerId });
+
+    const stock = await this.partController.getStock();
+
+    products.forEach(async (product) => {
+      const blueprints = await this.bluePrintController.getBlueprintsByProduct(
+        product.id
+      );
+
+      blueprints.forEach(async (blueprint) => {
+        if (
+          stock.get(blueprint.partId) - product.quantity * blueprint.quantity <
+          0
+        ) {
+          return res.status(400).json({ message: "not enough parts in stock" });
+        } else {
+          console.log(stock.get(blueprint.partId));
+          await this.partController.setStock(
+            blueprint.partId,
+            stock.get(blueprint.partId) - product.quantity * blueprint.quantity
+          );
+        }
+      });
+    });
+
+    try {
+      const orderInserted = await this.orderRepository.save(order);
+
+      products.forEach(async (product) => {
+        const orderedProduct = this.orderedProductsRepository.create({
+          orderId: orderInserted.id,
+          productId: product.id,
+          quantity: product.quantity,
+        });
+        console.log(orderedProduct);
+        await this.orderedProductsRepository.save(orderedProduct);
+      });
+
+      res.status(200).json({ message: "successful order" });
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  };
 }
