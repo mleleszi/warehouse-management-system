@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import Customer from '../../customer/customer.model';
-import Product from '../../product/product.model';
 import { Subscription } from 'rxjs';
 import { CustomerService } from '../../customer/customer.service';
 import { AuthService } from '../../auth/auth.service';
-import { PartService } from '../../part/part.service';
 import { ProductService } from '../../product/product.service';
 import OrderCreateDto from '../order-create.dto';
 import { NgForm } from '@angular/forms';
-import ProductCreateDto from '../../product/product-create.dto';
+import { OrderService } from '../order.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order-create',
@@ -19,7 +18,6 @@ export class OrderCreateComponent implements OnInit {
   customers: Customer[];
   products: { id: number; name: string; added: number }[];
   selectedCustomer: Customer;
-  orderCreateDto: OrderCreateDto;
 
   isLoading = false;
   userIsAuthenticated = false;
@@ -31,7 +29,9 @@ export class OrderCreateComponent implements OnInit {
   constructor(
     private customerService: CustomerService,
     private productService: ProductService,
-    private authService: AuthService
+    private authService: AuthService,
+    private orderService: OrderService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -67,7 +67,33 @@ export class OrderCreateComponent implements OnInit {
       });
   }
 
-  onSaveOrder(form: NgForm) {}
+  onSaveOrder(form: NgForm) {
+    if (form.invalid) return;
+    this.isLoading = true;
+    this.selectedCustomer = form.value.selectedCustomer;
+
+    const products = this.products
+      .filter((product) => product.added !== 0)
+      .map((product) => {
+        return { id: product.id, quantity: product.added };
+      });
+    const orderCreateDto = {
+      customerId: this.selectedCustomer.id,
+      products,
+    };
+
+    this.orderService.createOrder(orderCreateDto).subscribe(() => {
+      this.isLoading = false;
+    });
+
+    this.products.forEach((product) => {
+      product.added = 0;
+    });
+
+    form.resetForm();
+    this.router.navigate(['']);
+    console.log(orderCreateDto);
+  }
 
   increment(part: { id: number; name: string; added: number }) {
     part.added++;

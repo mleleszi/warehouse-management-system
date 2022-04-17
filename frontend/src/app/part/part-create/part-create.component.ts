@@ -12,9 +12,6 @@ import { PartService } from '../part.service';
   styleUrls: ['./part-create.component.css'],
 })
 export class PartCreateComponent implements OnInit {
-  enteredName = '';
-  enteredDescription = '';
-  enteredStock = '';
   enteredPrice = '';
   part: Part;
   isLoading = false;
