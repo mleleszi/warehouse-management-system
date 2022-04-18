@@ -24,9 +24,11 @@ mat-icon:hover{
 
 .added {
   margin: 0 5px;
-
 }
 
-button {
+.submit-btn {
   margin-top: 20px;
 }
+
+
+

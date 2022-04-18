@@ -9,6 +9,7 @@ import { BlueprintController } from "./blueprint.controller";
 
 export class OrderController extends Controller {
   orderRepository = getRepository(Order);
+  customerRepository = getRepository(Customer);
   orderedProductsRepository = getRepository(OrderedProducts);
   partController = new PartController();
   bluePrintController = new BlueprintController();
@@ -78,6 +79,35 @@ export class OrderController extends Controller {
       }
 
       res.status(200).json({ message: "successful order" });
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  };
+
+  override getAll = async (req, res) => {
+    try {
+      /*
+      const products = await this.orderRepository.find({
+        relations: ["customer", "orderedProducts"],
+      });
+
+       */
+
+      const data = await this.orderRepository
+        .createQueryBuilder("order")
+        .leftJoinAndSelect("order.orderedProducts", "orderedProducts")
+        .leftJoinAndSelect("orderedProducts.product", "product")
+        .select([
+          "order.id",
+          "order.orderDate",
+          "order.customerId",
+          "orderedProducts.productId",
+          "orderedProducts.quantity",
+          "product.name",
+        ])
+        .getMany();
+
+      res.json(data);
     } catch (err) {
       res.status(500).json({ message: err.message });
     }
