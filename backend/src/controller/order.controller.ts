@@ -93,7 +93,7 @@ export class OrderController extends Controller {
 
        */
 
-      const data = await this.orderRepository
+      const orders = await this.orderRepository
         .createQueryBuilder("order")
         .leftJoinAndSelect("order.orderedProducts", "orderedProducts")
         .leftJoinAndSelect("orderedProducts.product", "product")
@@ -107,7 +107,20 @@ export class OrderController extends Controller {
         ])
         .getMany();
 
-      res.json(data);
+      const customers = await this.customerRepository.find();
+
+      const customerMap = new Map<number, Customer>();
+
+      customers.forEach((customer) => {
+        customerMap.set(customer.id, customer);
+      });
+
+      orders.forEach((order) => {
+        order.customer = customerMap.get(order.customerId);
+        delete order.customerId;
+      });
+
+      res.json(orders);
     } catch (err) {
       res.status(500).json({ message: err.message });
     }
