@@ -24,13 +24,13 @@ export class CustomerService {
       .pipe(
         map((data) => {
           return {
-            customers: data.map((part) => {
+            customers: data.map((customer) => {
               return {
-                id: part.id,
-                name: part.name,
-                email: part.email,
-                phoneNum: part.phoneNum,
-                address: part.address,
+                id: customer.id,
+                name: customer.name,
+                email: customer.email,
+                phoneNum: customer.phoneNum,
+                address: customer.address,
               };
             }),
           };

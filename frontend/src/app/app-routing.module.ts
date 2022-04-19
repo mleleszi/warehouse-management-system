@@ -10,6 +10,7 @@ import { CustomerCreateComponent } from './customer/customer-create/customer-cre
 import { ProductCreateComponent } from './product/product-create/product-create.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { OrderCreateComponent } from './order/order-create/order-create.component';
+import { OrderListComponent } from './order/order-list/order-list.component';
 
 const routes: Routes = [
   { path: 'parts', component: PartListComponent, canActivate: [AuthGuard] },
@@ -46,6 +47,11 @@ const routes: Routes = [
   {
     path: 'products/create',
     component: ProductCreateComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'orders',
+    component: OrderListComponent,
     canActivate: [AuthGuard],
   },
   {

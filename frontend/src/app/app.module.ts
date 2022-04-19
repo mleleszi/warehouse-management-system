@@ -21,6 +21,7 @@ import { ErrorComponent } from './error/error.component';
 import { ProductCreateComponent } from './product/product-create/product-create.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { OrderCreateComponent } from './order/order-create/order-create.component';
+import { OrderListComponent } from './order/order-list/order-list.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { OrderCreateComponent } from './order/order-create/order-create.componen
     ProductCreateComponent,
     ProductListComponent,
     OrderCreateComponent,
+    OrderListComponent,
   ],
   imports: [
     BrowserModule,
