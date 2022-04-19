@@ -11,7 +11,7 @@
     <div><strong>Address: </strong>{{order.customer.address}}</div>
 
     <h3>Ordered Products</h3>
-    <table mat-table [dataSource]="order.orderedProducts" class="mat-elevation-z8" *ngIf="!isLoading && userIsAuthenticated">
+    <table mat-table [dataSource]="order.orderedProducts" class="mat-elevation-z8" *ngIf="!isLoading && userIsAuthenticated && orders.length != 0">
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
         <td mat-cell *matCellDef="let item"> {{item.product.name}} </td>
@@ -27,3 +27,6 @@
   </table>
   </mat-expansion-panel>
 </mat-accordion>
+<p class="info-text mmat-body-1" *ngIf="orders.length == 0 && !isLoading">
+  No orders added yet!
+</p>

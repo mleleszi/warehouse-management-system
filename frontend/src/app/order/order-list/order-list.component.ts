@@ -32,7 +32,6 @@ export class OrderListComponent implements OnInit, OnDestroy {
       .subscribe((data) => {
         this.isLoading = false;
         this.orders = data.orders;
-        console.log(this.orders);
       });
     this.userIsAuthenticated = this.authService.getIsAuthenticated();
     this.authListenerSubscription = this.authService

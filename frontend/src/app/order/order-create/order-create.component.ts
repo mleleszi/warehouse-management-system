@@ -91,7 +91,6 @@ export class OrderCreateComponent implements OnInit {
     });
 
     form.resetForm();
-    this.router.navigate(['orders']);
   }
 
   increment(part: { id: number; name: string; added: number }) {
