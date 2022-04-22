@@ -11,18 +11,19 @@ import { ProductCreateComponent } from './product/product-create/product-create.
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { OrderCreateComponent } from './order/order-create/order-create.component';
 import { OrderListComponent } from './order/order-list/order-list.component';
+import { AdminGuard } from './auth/admin.guard';
 
 const routes: Routes = [
   { path: 'parts', component: PartListComponent, canActivate: [AuthGuard] },
   {
     path: 'parts/create',
     component: PartCreateComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, AdminGuard],
   },
   {
     path: 'parts/edit/:partId',
     component: PartCreateComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, AdminGuard],
   },
   {
     path: 'customers',
@@ -32,12 +33,12 @@ const routes: Routes = [
   {
     path: 'customers/create',
     component: CustomerCreateComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, AdminGuard],
   },
   {
     path: 'customers/edit/:customerId',
     component: CustomerCreateComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, AdminGuard],
   },
   {
     path: 'products',
@@ -47,7 +48,7 @@ const routes: Routes = [
   {
     path: 'products/create',
     component: ProductCreateComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, AdminGuard],
   },
   {
     path: 'orders',
@@ -57,7 +58,7 @@ const routes: Routes = [
   {
     path: 'orders/create',
     component: OrderCreateComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, AdminGuard],
   },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
@@ -66,6 +67,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AuthGuard],
+  providers: [AuthGuard, AdminGuard],
 })
 export class AppRoutingModule {}

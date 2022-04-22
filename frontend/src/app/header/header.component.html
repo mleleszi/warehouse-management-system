@@ -11,7 +11,7 @@
           List
         </a>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item *ngIf="role == 'admin'">
         <a mat-button class="submenu" routerLink="/parts/create" routerLinkActive="mat-accent">
           Add
         </a>
@@ -25,7 +25,7 @@
           List
         </a>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item *ngIf="role == 'admin'">
         <a mat-button class="submenu" routerLink="/products/create" routerLinkActive="mat-accent">
           Add
         </a>
@@ -39,7 +39,7 @@
           List
         </a>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item *ngIf="role == 'admin'">
         <a mat-button class="submenu" routerLink="/orders/create" routerLinkActive="mat-accent">
           Add
         </a>
@@ -53,7 +53,7 @@
           List
         </a>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item *ngIf="role == 'admin'">
         <a mat-button class="submenu" routerLink="/customers/create" routerLinkActive="mat-accent">
           Add
         </a>

@@ -98,8 +98,8 @@ export function getRouter() {
   );
 
   // user routes
-  router.post("/api/register", checkAdmin, userController.register);
-  router.post("/api/login", checkAdmin, userController.login);
+  router.post("/api/register", userController.register);
+  router.post("/api/login", userController.login);
 
   return router;
 }

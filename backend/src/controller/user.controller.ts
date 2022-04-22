@@ -47,7 +47,9 @@ export class UserController {
         { expiresIn: "1h" }
       );
 
-      return res.status(200).json({ token, expiresIn: "3600" });
+      return res
+        .status(200)
+        .json({ token, expiresIn: "3600", role: user.role });
     } catch (err) {
       res.status(500).json({ message: err.message });
     }

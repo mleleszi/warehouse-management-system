@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   userIsAuthenticated = false;
+  role: string;
   private authListenerSubscription: Subscription;
 
   constructor(private authService: AuthService, public router: Router) {}
@@ -21,7 +22,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .getAuthStatusListener()
       .subscribe((isAuthenticated) => {
         this.userIsAuthenticated = isAuthenticated;
+        this.role = this.authService.getRole();
       });
+    this.role = this.authService.getRole();
   }
 
   ngOnDestroy(): void {
