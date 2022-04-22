@@ -13,6 +13,7 @@ export class UserController {
     const entity = this.repository.create({
       email: req.body.email,
       password: hash,
+      role: "user",
     });
 
     try {
@@ -41,7 +42,7 @@ export class UserController {
       }
 
       const token = jwt.sign(
-        { email: user.email, userId: user.id },
+        { email: user.email, userId: user.id, role: user.role },
         "THIS_SHOULD_BE_LONGER",
         { expiresIn: "1h" }
       );
